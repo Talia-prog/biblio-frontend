@@ -1,0 +1,64 @@
+.page-gestion {
+    padding: 30px;
+    background-color: #fefefe;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+  }
+  
+  .page-gestion h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+  
+  .form-ligne {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .form-ligne input {
+    padding: 10px;
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-ligne button {
+    background: #3498db;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .liste {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .liste li {
+    background: #f2f4f6;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 5px solid #2980b9;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .liste li button {
+    margin-left: 10px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    background: #2ecc71;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .liste li button.danger {
+    background: #e74c3c;
+  }
