@@ -209,7 +209,7 @@ const handleDelete = async (id) => {
 
 const exporterLivresPDF = async () => {
   try {
-    const res = await axios.get("${process.env.REACT_APP_API_URL}/api/livres/avec-lecteurs");
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/livres/avec-lecteurs`);
     let livres = res.data;
 
     const doc = new jsPDF();
