@@ -1,0 +1,1 @@
+window.env ={REACT_APP_API_URL :"https://biblio-server-1eh1.onrender.com"};

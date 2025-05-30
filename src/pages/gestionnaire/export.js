@@ -15,7 +15,7 @@ const ExportEmprunts = () => {
   }
 
   try {
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/emprunts/export`,{
+    const res = await axios.get(`${window.env.REACT_APP_API_URL}/api/emprunts/export`,{
         params:{
             debut:debut,
             fin:fin

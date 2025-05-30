@@ -11,16 +11,16 @@ const Statistiques = () => {
   const [dispo, setDispo] = useState({ taux: 0, totalLivres: 0, disponibles: 0 });
 
   useEffect(() => {
-    axios.get("${process.env.REACT_APP_API_URL}/api/statistiques/top-livres").then(res => setTopLivres(res.data));
-    axios.get("${process.env.REACT_APP_API_URL}/api/statistiques/emprunts-par-mois").then(res => {
+    axios.get("${window.env.REACT_APP_API_URL}/api/statistiques/top-livres").then(res => setTopLivres(res.data));
+    axios.get("${window.env.REACT_APP_API_URL}/api/statistiques/emprunts-par-mois").then(res => {
       const format = res.data.map(e => ({
         mois: `${e._id.mois}/${e._id.annee}`,
         total: e.total
       }));
       setParMois(format);
     });
-    axios.get("${process.env.REACT_APP_API_URL}/api/statistiques/livres-empruntes").then(res => setNbEmpruntes(res.data.total));
-    axios.get("${process.env.REACT_APP_API_URL}/api/statistiques/taux-disponibilite").then(res => setDispo(res.data));
+    axios.get("${window.env.REACT_APP_API_URL}/api/statistiques/livres-empruntes").then(res => setNbEmpruntes(res.data.total));
+    axios.get("${window.env.REACT_APP_API_URL}/api/statistiques/taux-disponibilite").then(res => setDispo(res.data));
   }, []);
 
   const couleurs = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#845EC2'];

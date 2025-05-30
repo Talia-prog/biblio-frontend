@@ -9,7 +9,7 @@ function EmpruntsEnCours({ nom, poste }) {
 useEffect(() => { 
     const fetchEmprunts = async () => { 
         try { 
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/emprunts/lecteur`, { nom, poste }); 
+            const response = await axios.post(`${window.env.REACT_APP_API_URL}/api/emprunts/lecteur`, { nom, poste }); 
             setEmprunts(response.data); 
         } catch (err) { 
             console.error('Erreur récupération emprunts :', err); 

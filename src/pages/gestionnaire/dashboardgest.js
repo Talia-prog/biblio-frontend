@@ -38,38 +38,38 @@ const [nouvelleDemande, setNouvelleDemande] = useState(false);
   const[dateretour, setDateRetour]=useState({});
 
 useEffect(() => { 
-  axios.get(`${process.env.REACT_APP_API_URL}/api/livres`)
+  axios.get(`${window.env.REACT_APP_API_URL}/api/livres`)
   .then(res => setLivres(res.data)); 
-  axios.get(`${process.env.REACT_APP_API_URL}/api/rubriques`)
+  axios.get(`${window.env.REACT_APP_API_URL}/api/rubriques`)
   .then(res => setRubriques(res.data));
 
 // if (ongletActif === "suggestions") {
-//   axios.get(`${process.env.REACT_APP_API_URL}/api/suggestions")
+//   axios.get(`${window.env.REACT_APP_API_URL}/api/suggestions")
 //   .then(res => setSuggestions(res.data));
 // }
 if (ongletActif === "demandes") {
-  axios.get(`${process.env.REACT_APP_API_URL}/api/demandes`)
+  axios.get(`${window.env.REACT_APP_API_URL}/api/demandes`)
   .then(res => setDemandes(res.data));
 }
 
 if (ongletActif === "enCours") {
   if (ongletActif === "enCours") {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/emprunts/encours`)
+    axios.get(`${window.env.REACT_APP_API_URL}/api/emprunts/encours`)
       .then(res => setEmprunts(res.data))
       .catch(err => console.error("Erreur chargement emprunts en cours:", err));
   }
 
 }
 if (ongletActif === "historique") {
-  axios.get(`${process.env.REACT_APP_API_URL}/api/emprunts/historique`)
+  axios.get(`${window.env.REACT_APP_API_URL}/api/emprunts/historique`)
     .then(res => setHistoriqueEmprunts(res.data));
 }
 if (ongletActif === "stats") {
-  axios.get(`${process.env.REACT_APP_API_URL}/api/statistiques`)
+  axios.get(`${window.env.REACT_APP_API_URL}/api/statistiques`)
   .then(res => setStats(res.data));
 }
 //  if (ongletActif !== "suggestions") {
-//     axios.get("${process.env.REACT_APP_API_URL}/api/suggestions")
+//     axios.get("${window.env.REACT_APP_API_URL}/api/suggestions")
 //       .then(res => {
 //         const suggestions = res.data;
 //         const derniereConsultation = localStorage.getItem("derniereConsultSuggestion");
@@ -81,7 +81,7 @@ if (ongletActif === "stats") {
 //     setNouvelleSuggestion(false);
 //   }
 if (ongletActif !== "demandes") {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/demandes`)
+    axios.get(`${window.env.REACT_APP_API_URL}/api/demandes`)
       .then(res => {
         const demandes = res.data;
         const derniereConsultation = localStorage.getItem("derniereConsultDemande");
@@ -96,25 +96,25 @@ if (ongletActif !== "demandes") {
 
 }, [ongletActif]);
 // useEffect(() => {
-//   axios.get("${process.env.REACT_APP_API_URL}/api/gestionnaire/compte") // à adapter selon ton API
+//   axios.get("${window.env.REACT_APP_API_URL}/api/gestionnaire/compte") // à adapter selon ton API
 //     .then(res => setGestionnaire(res.data))
 //     .catch(err => console.error("Erreur compte gestionnaire :", err));
 // }, []);
 const enregistrerNouveauLivre = () => { 
-  axios.post(`${process.env.REACT_APP_API_URL}/api/livres`, { ...nouveauLivre, rubrique: rubriqueActive }) 
+  axios.post(`${window.env.REACT_APP_API_URL}/api/livres`, { ...nouveauLivre, rubrique: rubriqueActive }) 
   .then(() => { alert("Livre ajouté"); 
     setFormVisible(false); 
     setNouveauLivre({ id: "", titre: "", auteur: "", datepublication: "", rubrique: rubriqueActive, editeurs: "", exemplaires: 1, disponible: true }); 
-    return axios.get(`${process.env.REACT_APP_API_URL}/api/livres`); }) 
+    return axios.get(`${window.env.REACT_APP_API_URL}/api/livres`); }) 
     .then(res => setLivres(res.data)); 
   };
 
 const enregistrerModificationLivre = (id) => { 
-  axios.put(`${process.env.REACT_APP_API_URL}/api/livres/${id}`, formModif) 
+  axios.put(`${window.env.REACT_APP_API_URL}/api/livres/${id}`, formModif) 
   .then(() => { alert("Livre modifié"); 
     setModificationId(null); 
     setFormModif({}); 
-    return axios.get(`${process.env.REACT_APP_API_URL}/api/livres`); 
+    return axios.get(`${window.env.REACT_APP_API_URL}/api/livres`); 
   }) 
   .then(res => setLivres(res.data)); 
 };
@@ -127,7 +127,7 @@ const validerDemande = async (demandeId, livreId) => {
   }
 
   try {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/emprunts`, {
+    const res = await axios.post(`${window.env.REACT_APP_API_URL}/api/emprunts`, {
       demandeId,
       livreId,
       duree,
@@ -149,7 +149,7 @@ const refuserDemande = async (idDemande, motif) => {
   if (!motif) return alert("Veuillez indiquer un motif de refus.");
 
   try {
-    await axios.post(`${process.env.REACT_APP_API_URL}/api/demandes/refuser`, {
+    await axios.post(`${window.env.REACT_APP_API_URL}/api/demandes/refuser`, {
       idDemande,
       motif,
     });
@@ -171,7 +171,7 @@ const enregistrerRetour = async (id) => {
   }
 
   try {
-    await axios.put(`${process.env.REACT_APP_API_URL}/api/emprunts/${id}/retour`, {
+    await axios.put(`${window.env.REACT_APP_API_URL}/api/emprunts/${id}/retour`, {
       dateretour: date,
     });
 
@@ -190,7 +190,7 @@ const handleDelete = async (id) => {
   if (!window.confirm("Voulez-vous vraiment supprimer ce livre ?")) return;
 
   try {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/livres/${id}`, {
+    const res = await fetch(`${window.env.REACT_APP_API_URL}/api/livres/${id}`, {
       method: 'DELETE'
     });
 
@@ -209,7 +209,7 @@ const handleDelete = async (id) => {
 
 const exporterLivresPDF = async () => {
   try {
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/livres/avec-lecteurs`);
+    const res = await axios.get(`${window.env.REACT_APP_API_URL}/api/livres/avec-lecteurs`);
     let livres = res.data;
 
     const doc = new jsPDF();

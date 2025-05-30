@@ -25,7 +25,7 @@ const handleLogin = async (e) => {
   }
 
   try {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/gestionnaire/login`, {
+    const res = await axios.post(`${window.env.REACT_APP_API_URL}/api/gestionnaire/login`, {
       email,
       motdepasse,
     });

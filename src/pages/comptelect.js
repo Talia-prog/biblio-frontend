@@ -45,7 +45,7 @@ const CompteLecteur = () => {
   if (info) {
     const lecteurData = JSON.parse(info);
     setLecteur(lecteurData);
-    axios.get(`${process.env.REACT_APP_API_URL}/api/emprunts/encours/${lecteurData.nom}/${lecteurData.poste}`)
+    axios.get(`${window.env.REACT_APP_API_URL}/api/emprunts/encours/${lecteurData.nom}/${lecteurData.poste}`)
   .then(res => setEmprunts(res.data))
   .catch(err => console.error("Erreur récupération emprunts :", err));
   }
@@ -56,7 +56,7 @@ const CompteLecteur = () => {
 
   const handleModification = async () => {
     try {
-      const res = await axios.put(`${process.env.REACT_APP_API_URL}/api/lecteurs/modifier-info/${lecteur._id}`, formData);
+      const res = await axios.put(`${window.env.REACT_APP_API_URL}/api/lecteurs/modifier-info/${lecteur._id}`, formData);
       const updatedlecteur=res.data.lecteur;
       localStorage.setItem("lecteurConnecte",JSON.stringify(updatedlecteur));
       setLecteur(updatedlecteur);
@@ -70,7 +70,7 @@ const CompteLecteur = () => {
 
     if (!window.confirm("Confirmer la suppression de votre compte ?")) return;
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/lecteurs/${lecteur._id}`);
+      await axios.delete(`${window.env.REACT_APP_API_URL}/api/lecteurs/${lecteur._id}`);
       localStorage.removeItem("lecteurConnecte");
       window.location.href = "/";
       navigate("/connexion-lecteur")

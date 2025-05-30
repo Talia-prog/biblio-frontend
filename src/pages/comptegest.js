@@ -32,7 +32,7 @@ function CompteGestionnaire() {
  const modifierInfos = async (e) => {
   e.preventDefault();
   try {
-    const res = await axios.put(`${process.env.REACT_APP_API_URL}/api/gestionnaire/modifier-info-par-email/${gestionnaire.email}`, {
+    const res = await axios.put(`${window.env.REACT_APP_API_URL}/api/gestionnaire/modifier-info-par-email/${gestionnaire.email}`, {
       nom,
       email,
     });
@@ -52,7 +52,7 @@ const modifierMotDePasse = async (e) => {
 
   try {
     const res = await axios.put(
-      `${process.env.REACT_APP_API_URL}/api/gestionnaire/modifier-motdepasse-par-email/${gestionnaire.email}`,
+      `${window.env.REACT_APP_API_URL}/api/gestionnaire/modifier-motdepasse-par-email/${gestionnaire.email}`,
       {
         ancienMotdepasse: ancien,
         nouveauMotdepasse: nouveau,
@@ -70,7 +70,7 @@ const modifierMotDePasse = async (e) => {
 
   const handleAjout = async () => {
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/gestionnaire`, formAjout);
+      const res = await axios.post(`${window.env.REACT_APP_API_URL}/api/gestionnaire`, formAjout);
       alert("Nouveau gestionnaire ajouté");
       setFormAjout({ nom: "", email: "", motdepasse: "" });
       setMode("voir");
@@ -81,7 +81,7 @@ const modifierMotDePasse = async (e) => {
 
   const handleSuppression = () => {
     if (!window.confirm("Voulez-vous vraiment supprimer votre compte ?")) return;
-    axios.delete(`${process.env.REACT_APP_API_URL}/api/gestionnaire/email/${gestionnaire.email}`).then(() => {
+    axios.delete(`${window.env.REACT_APP_API_URL}/api/gestionnaire/email/${gestionnaire.email}`).then(() => {
       localStorage.removeItem("gestionnaire");
       alert("Compte supprimé");
       window.location.reload();

@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && copy public\\_redirects build\\_",
+    "build": "react-scripts build && npx copyfiles public\\_redirects build\\_",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

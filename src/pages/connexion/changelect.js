@@ -16,7 +16,7 @@ function ChangerMotDePasse() {
     }
 
     try {
-      const res = await axios.put(`${process.env.REACT_APP_API_URL}/api/lecteurs/changer-motdepasse/${lecteur._id}`, {
+      const res = await axios.put(`${window.env.REACT_APP_API_URL}/api/lecteurs/changer-motdepasse/${lecteur._id}`, {
         ancienMotDePasse: ancien,
         nouveauMotDePasse: nouveau,
       });

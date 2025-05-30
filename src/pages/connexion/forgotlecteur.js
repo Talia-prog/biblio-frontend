@@ -14,7 +14,7 @@ export default function MotDePasseOublieLecteur() {
     setErreur("");
 
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/lecteurs/motdepasse-oublie`, { email });
+      const res = await axios.post(`${window.env.REACT_APP_API_URL}/api/lecteurs/motdepasse-oublie`, { email });
       setMessage(res.data.message);
     } catch (err) {
       if (err.response) {

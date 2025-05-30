@@ -20,7 +20,7 @@ function ResetPasswordGestionnaire() {
     }
 
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/gestionnaire/reset-password`, {
+      const res = await axios.post(`${window.env.REACT_APP_API_URL}/api/gestionnaire/reset-password`, {
         token,
         nouveauMotdepasse: motdepasse,
       });

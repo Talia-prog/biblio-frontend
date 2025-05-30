@@ -26,12 +26,12 @@ function PageLecteur() {
     setForm({ nom: lecteurData.nom, poste: lecteurData.poste });
     setSuggestion((prev) => ({ ...prev, nomAgent: lecteurData.nom }));
 
-    axios.get(`${process.env.REACT_APP_API_URL}/api/emprunts/encours/${lecteurData.nom}/${lecteurData.poste}`)
+    axios.get(`${window.env.REACT_APP_API_URL}/api/emprunts/encours/${lecteurData.nom}/${lecteurData.poste}`)
   .then(res => setEmprunts(res.data))
   .catch(err => console.error("Erreur récupération emprunts :", err));
   }
 
-  axios.get(`${process.env.REACT_APP_API_URL}/api/livres`)
+  axios.get(`${window.env.REACT_APP_API_URL}/api/livres`)
     .then((res) => {
       const tousLesLivres = res.data;
       setLivres(tousLesLivres);
@@ -47,7 +47,7 @@ function PageLecteur() {
       alert("Tous les champs sont obligatoires.");
       return;
     }
-    axios.post(`${process.env.REACT_APP_API_URL}/api/demandes`, {
+    axios.post(`${window.env.REACT_APP_API_URL}/api/demandes`, {
       nom: form.nom,
       poste: form.poste,
       titre: livreSelectionne.titre,
@@ -58,7 +58,7 @@ function PageLecteur() {
         alert("Demande envoyée !");
         setFormVisible(false);
 
-        axios.get(`${process.env.REACT_APP_API_URL}/api/emprunts/encours/${form.nom}/${form.poste}`)
+        axios.get(`${window.env.REACT_APP_API_URL}/api/emprunts/encours/${form.nom}/${form.poste}`)
         .then(res=>setEmprunts(res.data));
       })
       .catch(() => alert("Erreur lors de l'envoi."));
@@ -69,7 +69,7 @@ function PageLecteur() {
       alert("Veuillez remplir les champs obligatoires.");
       return;
     }
-    axios.post(`${process.env.REACT_APP_API_URL}/api/suggestions`, suggestion)
+    axios.post(`${window.env.REACT_APP_API_URL}/api/suggestions`, suggestion)
       .then(() => {
         alert("Suggestion envoyée !");
         setSuggestionPopupVisible(false);

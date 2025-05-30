@@ -21,7 +21,7 @@ const navigate = useNavigate();
   setMessage("");
 
   try {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/lecteurs/inscription`, form);
+    const res = await axios.post(`${window.env.REACT_APP_API_URL}/api/lecteurs/inscription`, form);
     setMessage(res.data.message || "Compte créé avec succès !");
     setForm({ nom: "", poste: "", email: "", motdepasse: "" });
 
